@@ -4,7 +4,7 @@ data class Usuario(val id: Int, val nome: String)
 
 data class ConteudoEducacional(val id: Int, var nome: String, val duracao: Int = 5)
 
-data class Nota(val usuario: Usuario, val conteudo: ConteudoEducacional, val valor: Float)
+data class Nota(val id: Int, val usuario: Usuario, val conteudo: ConteudoEducacional, val valor: Float)
 
 data class Formacao(val id: Int, var nome: String, val nivel: Nivel, val conteudos: MutableSet<ConteudoEducacional>) {
     val inscritos = mutableSetOf<Usuario>()
@@ -55,8 +55,8 @@ fun main() {
     println()
     println("Processando notas...")
     val notas: List<Nota> = listOf(
-    	Nota(usuario1, conteudo1, 7.5f),
-        Nota(usuario1, conteudo2, 8f),
+    	Nota(1, usuario1, conteudo1, 7.5f),
+        Nota(2, usuario1, conteudo2, 8f),
     )
     val processarNota: (Nota) -> String = { nota -> "A nota de ${nota.usuario.nome} no conteúdo ${nota.conteudo.nome} é de ${nota.valor}" }  
     for (nota in notas) {
